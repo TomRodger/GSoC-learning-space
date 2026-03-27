@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./models/sugarscape/Behavioural",
+        "./models/sugarscape/monolith"
+    ]
+}

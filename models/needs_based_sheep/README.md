@@ -34,13 +34,13 @@ I also learned that small parameter changes, such as wolf predation pressure, ca
 **Conceptual friction:**
 - When deciding on specific parameters such as 'max_energy', I had to arbitrarily pick a value that seemed reasonable with no real principled basis. 
 - The same issue applied to drive rates (e.g. 0.05 hunger accumulation, 0.1 fear decay, 0.3 wolf spike); these values had no real bases except estimation and small tweaks guided by the population graphs. 
-- I also had trouble initially when looking at the graphs and seeing very similar results, before realising I needed to increase the predation pressure to see the full effect of the needs-based agents' behaviour. 
 
 **What I'd do differently:**
 - I would take better notes when building, as I had to reconstruct many of my friction points from memory for this README.
 - Add agent_reporters from the start to observe drive states directly rather than just inferring changes from the population graph.
 - Use drive state visualisation and population graphs hand in hand to guide the parameter choices clearly from the beginning.
-- I would construct better plots from the collected data if I had more time to work on these models. 
+- I would spend more time working out how the changes in parameters affect the results, to create stronger comparisons between models.
+- I would construct better visualisations and analysis from the collected data if I had more time to work on these models. 
 
 ## Results
 
@@ -48,6 +48,7 @@ I also learned that small parameter changes, such as wolf predation pressure, ca
 
 *Mean ± standard deviation over 500 runs. Both models use identical parameters: 150 sheep, 20 wolves, sheep_reproduce = 0.08, wolf_gain_from_food=12.0, grass_regrowth_time=20.0*
 
-Under identical parameters (wolf_gain_from_food=12.0), needs-based sheep maintain a stable long-run population while the original sheep consistently collapse toward extinction. This is not a parameter tuning effect since both models face the same predation pressure; the difference in results comes from the different sheep behaviours, with the needs-based sheep surviving longer as they prioritise fleeing when scared, so they survive better than sheep executing a fixed sequence every step.
+Under identical parameters (wolf_gain_from_food=12.0, 500 runs), both models produce similar mean population dynamics — sheep recover to a stable low population, wolves decline toward zero, and grass settles at moderate levels. The primary visible difference is that the original model shows higher variance in sheep and grass populations, suggesting needs-based sheep produce slightly more consistent outcomes. The mean trajectories are not substantially different.
+This is itself a meaningful finding, showing a simple utility function with two competing drives is not sufficient to produce dramatically different ecosystem outcomes under moderate predation pressure. The architectural change matters, but its effect is subtle. However, it could be worth testing other conditions to see how this change behaviour can affect the difference in outcomes. This points directly at what the Behavioral Framework project needs to deliver: richer primitives for goal structures, memory, and learning that produce qualitatively different agent behaviour, not just marginal differences in population variance.
 
 The core architectural gap that this model exposes is that Mesa provides no native abstraction for action selection based off of drive states. Implementing 'decide_and_act()' required removing Mesa's existing step structure and building a new decision method from scratch. A behavioural framework that provides this as a standard primitive would make needs-based and utility-based models significantly easier to implement and compare. 

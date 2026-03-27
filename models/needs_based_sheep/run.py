@@ -15,7 +15,7 @@ from mesa.examples.advanced.wolf_sheep.model import WolfSheep, WolfSheepScenario
 from model import NeedsBasedWolfSheep
 
 STEPS = 500
-N_RUNS = 500
+N_RUNS = 1000
 
 
 def run_model(model, steps):
@@ -52,7 +52,7 @@ def run_multiple_needs_based(steps, n_runs):
             initial_sheep=150,
             initial_wolves=20,
             sheep_reproduce=0.08,
-            wolf_gain_from_food=6.0,
+            wolf_gain_from_food=12.0,
             grass_regrowth_time=20,
             seed=seed,
         )

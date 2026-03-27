@@ -48,7 +48,7 @@ class NeedsBasedWolfSheep(Model):
         initial_wolves=20,
         sheep_reproduce=0.08,
         wolf_reproduce=0.05,
-        wolf_gain_from_food=12.0,
+        wolf_gain_from_food=1.0,
         grass_regrowth_time=20,
         sheep_gain_from_food=4.0,
         seed=None,
