@@ -31,6 +31,9 @@ I also learnt that the origanal Mesa agents are smarter than they look. The buil
 ## Reviews
 [Reviews of other candidates' work](reviews/)
 
+## Platform Analysis
+[Comparison with NetLogo, GAMA, and Agents.jl](platform_analysis/)
+
 
 
 
